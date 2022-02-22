@@ -15,6 +15,18 @@ def rescaleFrame(frame, scale=0.75):
 resizedImage = rescaleFrame(img)
 cv.imshow('Guy', resizedImage)
 
+# Changing color spaces
+grayVersion = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+hsvVersion = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+labVersion = cv.cvtColor(img, cv.COLOR_BGR2LAB)
+rgbVersion = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+cv.imshow('GuyInverted', rgbVersion)
+
+# Splitting color channels. Displays pixel intensity in grayscale 
+# (shape of structure passed to imshow determines how it's interpreted)
+b,g,r = cv.split(img)
+cv.imshow('Blue Only', b)
+
 # Waits for 0 to be pressed, then closes image
 cv.waitKey(0)
 
