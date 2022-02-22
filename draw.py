@@ -29,9 +29,15 @@ cv.imshow('Green', blankImg)
 blank = np.zeros((500, 500, 3), dtype='uint8')
 rectangle = cv.rectangle(blank.copy(), (0,0), (250, 250), (0,255, 0), thickness=cv.FILLED)
 circle = cv.circle(blank.copy(), (250, 250), 40, (0,255,0), thickness=cv.FILLED)
-cv.imshow('Bitwise AND', cv.bitwise_and(rectangle, circle))
-cv.imshow('Bitwise OR', cv.bitwise_or(rectangle, circle))
+# cv.imshow('Bitwise AND', cv.bitwise_and(rectangle, circle))
+# cv.imshow('Bitwise OR', cv.bitwise_or(rectangle, circle))
 cv.imshow('Bitwise XOR', cv.bitwise_xor(rectangle, circle))
 cv.imshow('Bitwise NOT', cv.bitwise_not(cv.bitwise_or(rectangle,circle)))
+
+# Masking
+img = cv.imread('guy.jpeg')
+blank = np.zeros(img.shape[:2], dtype='int8')
+mask = cv.circle(blank, (img.shape[1]//2+90, img.shape[0]//2-50), 100, 255, -1)
+cv.imshow('Masked Image', cv.bitwise_and(img, img, mask=mask))
 
 cv.waitKey(0)
